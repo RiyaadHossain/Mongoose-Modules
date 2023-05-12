@@ -8,4 +8,4 @@ async function dbConnection() {
 
 dbConnection()
   .then(() => console.log("Database connected Successfully"))
-  .catch((err) => console.log(err));
+  .catch((err: Error) => console.log(err));
