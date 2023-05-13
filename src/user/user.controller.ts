@@ -1,6 +1,11 @@
 import { Request, Response } from "express";
-import { createUserService, getUsersService } from "./user.services";
+import {
+  createUserService,
+  getUserByIdService,
+  getUsersService,
+} from "./user.services";
 
+// 1. Create User_______________________________________
 const createUser = async (req: Request, res: Response) => {
   try {
     const userData = req.body;
@@ -11,6 +16,7 @@ const createUser = async (req: Request, res: Response) => {
   }
 };
 
+// 2. Get Users_______________________________________
 const getUsers = async (req: Request, res: Response) => {
   try {
     const data = await getUsersService();
@@ -20,4 +26,15 @@ const getUsers = async (req: Request, res: Response) => {
   }
 };
 
-export default { createUser, getUsers };
+// 3. Get User_______________________________________
+const getUser = async (req: Request, res: Response) => {
+  try {
+    const { id } = req.params;
+    const data = await getUserByIdService(id);
+    res.status(200).json({ status: "success", data });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
+
+export default { createUser, getUsers, getUser };

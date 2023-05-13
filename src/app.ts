@@ -10,8 +10,10 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+// Application Routes
 import userRoute from "./user/user.route";
 
+// Routes Middleware
 app.use("/api/v1/user", userRoute);
 
 export default app;
