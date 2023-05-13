@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import {
   createUserService,
+  getAdminUsersServices,
   getUserByIdService,
   getUsersService,
 } from "./user.services";
@@ -37,4 +38,14 @@ const getUser = async (req: Request, res: Response) => {
   }
 };
 
-export default { createUser, getUsers, getUser };
+// 4. Get Admin Users_______________________________________
+const getAdminUsers = async (req: Request, res: Response) => {
+  try {
+    const data = await getAdminUsersServices()
+    res.status(200).json({ status: "success", data });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
+
+export default { createUser, getUsers, getUser, getAdminUsers };

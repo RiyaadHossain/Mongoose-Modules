@@ -20,3 +20,9 @@ export const getUserByIdService = async (id: string): Promise<IUser | null> => {
   const userData = await User.findById(id);
   return userData;
 };
+
+// 4. Get Admin User Service_______________________________________
+export const getAdminUsersServices = async () => {
+  const userData = await User.getAdmins();
+  return userData;
+};

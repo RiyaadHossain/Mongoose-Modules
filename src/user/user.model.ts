@@ -1,7 +1,5 @@
 import { Model, Schema, model } from "mongoose";
-import { IUser, IUserMethods } from "./user.interface";
-
-type UserModel = Model<IUser, {}, IUserMethods>;
+import { IUser, IUserMethods, UserModel } from "./user.interface";
 
 const userSchema = new Schema<IUser, UserModel, IUserMethods>({
   name: {
@@ -24,6 +22,12 @@ const userSchema = new Schema<IUser, UserModel, IUserMethods>({
   emergencyContactNo: { type: String, required: true },
   presentAddress: { type: String, required: true },
   permanentAdress: { type: String, required: true },
+});
+
+// Instance Method
+userSchema.static("getAdmins", async function getAdmins() {
+  const admins = await this.find({ role: "admin" });
+  return admins;
 });
 
 // Instance Method
