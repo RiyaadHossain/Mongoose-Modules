@@ -10,9 +10,8 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// Health Check
-// app.get("/", async (req: Request, res: Response) => {
+import userRoute from "./user/user.route";
 
-// });
+app.use("/api/v1/user", userRoute);
 
 export default app;

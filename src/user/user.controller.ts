@@ -1,24 +1,13 @@
-import { User } from "./user.model";
 import { Request, Response } from "express";
+import { createUserService } from "./user.services";
 
 const createUser = async (req: Request, res: Response) => {
-  const newUser = new User({
-    name: {
-      firstName: "Riyad",
-      lastName: "Hossain",
-    },
-    role: "student",
-    dateOfBirth: "11 March, 2001",
-    gender: "male",
-    email: "riyad@gmail.com",
-    contactNo: "01703790978",
-    emergencyContactNo: "01703790978",
-    presentAddress: "Bangladesh",
-    permanentAdress: "Bangladesh",
-  });
-
-  const userData = await newUser.save();
-  res.status(200).json(userData);
+  try {
+    const userData = await createUserService();
+    res.status(200).json({ status: "success", userData });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
 };
 
 export default { createUser };
