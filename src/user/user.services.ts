@@ -4,7 +4,8 @@ import { User } from "./user.model";
 // 1. Create User Service_______________________________________
 export const createUserService = async (payload: IUser): Promise<IUser> => {
   const newUser = new User(payload);
-  const userData = await newUser.save();
+  const userData = await newUser.save(); // Built-in Instance Method: A instance method works with a instance or class. Like: new User()
+  console.log(userData.fullName()); // Custom Instance Method. 
   return userData;
 };
 
