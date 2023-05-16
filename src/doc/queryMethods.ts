@@ -17,18 +17,26 @@
 */
 
 /* ----------- $addToSet ----------- 
-    db.practice.find({ interests: { $addToSet: "Gardening" } } }) --> To add element in an array | Don't replace the previous one | Don't add Duplicates
-    db.practice.find({ interests: { $addToSet: { $each: ["Gardening", "Sports"] } } } }) --> For adding multiple elements
+    db.practice.updateMany({ interests: { $addToSet: "Gardening" } } }) --> To add element in an array | Don't replace the previous one | Don't add Duplicates
+    db.practice.updateMany({ interests: { $addToSet: { $each: ["Gardening", "Sports"] } } } }) --> For adding multiple elements
 */
 
 /* ----------- $pop ----------- 
-    db.practice.find({ interests: { $pop: 1 } } }) --> To remove the last element of an Array
+    db.practice.updateMany({ interests: { $pop: 1 } } }) --> To remove the last element of an Array
 */
 
 /* ----------- $pull ----------- 
-    db.practice.find({ interests: { $pull: "Gaming" } } }) --> To remove a specific element
+    db.practice.updateMany({ interests: { $pull: "Gaming" } } }) --> To remove a specific element
 */
 
 /* ----------- $pullAll ----------- 
-    db.practice.find({ interests: { $pullAll: ["Gaming", "Gardening"] } } }) --> To remove multiple specific elements
+    db.practice.updateMany({ interests: { $pullAll: ["Gaming", "Gardening"] } } }) --> To remove multiple specific elements
+*/
+
+/* ----------- $rename ----------- 
+    db.practice.updateMany({ }, { $rename: { "nmae": "name" } }) --> To rename a field name
+*/
+
+/* ----------- $unset ----------- 
+    db.practice.updateMany({ }, { $unset: { name: "" } }) --> To remove a field
 */
