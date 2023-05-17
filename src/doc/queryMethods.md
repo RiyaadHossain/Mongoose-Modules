@@ -1,4 +1,4 @@
-# Module 7: Expolore Mongoose More Queries
+# Module 7: Expolore More MongoDB Queries
 
 ### $type 
     ```
