@@ -1,6 +1,6 @@
 # Mongoose-Modules
 
-## Module 7: Expolore More MongoDB Queries
+## MongoDB Operators
 
 ### $type
 
@@ -68,6 +68,8 @@ db.practice.updateMany({}, { $rename: { nmae: "name" } }); // To rename a field 
 ```js
 db.practice.updateMany({}, { $unset: { name: "" } }); // To remove a field
 ```
+
+---
 
 ---
 
@@ -154,5 +156,14 @@ db.practice.aggregate([
       friendsCount: [{ $project: { count: { $size: "$friends" } } }],
     },
   },
+]);
+```
+
+**Example 5:**
+
+```js
+db.practice.aggregate([
+  { $match: { gender: "Female", age: { $gte: 18 } } },
+  { $lookup: { from: "ShopCollections", localField: "shop", foreignField: "product", as: "shop" } },
 ]);
 ```
