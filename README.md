@@ -181,35 +181,35 @@ db.practice.aggregate([
 
 Dummy Data Structure
 
-```
+```js
 [
   {
-     "name": "John Doe",
-     "email": "johndoe@example.com",
-     "age": 28,
-     "address": {
-       "street": "123 Main St",
-       "city": "New York",
-       "state": "NY",
-       "zipcode": "10001"
-     },
-     "favorites": {
-       "color": "blue",
-       "food": "pizza",
-       "movie": "The Shawshank Redemption"
-     },
-     "friends": [
-       {
-         "name": "Jane Smith",
-         "email": "janesmith@example.com"
-       },
-       {
-         "name": "Mike Johnson",
-         "email": "mikejohnson@example.com"
-       }
-     ]
-  }
-]
+    name: "John Doe",
+    email: "johndoe@example.com",
+    age: 28,
+    address: {
+      street: "123 Main St",
+      city: "New York",
+      state: "NY",
+      zipcode: "10001",
+    },
+    favorites: {
+      color: "blue",
+      food: "pizza",
+      movie: "The Shawshank Redemption",
+    },
+    friends: [
+      {
+        name: "Jane Smith",
+        email: "janesmith@example.com",
+      },
+      {
+        name: "Mike Johnson",
+        email: "mikejohnson@example.com",
+      },
+    ],
+  },
+];
 ```
 
 ## Query Practice
@@ -381,10 +381,64 @@ db.users.aggregate([
 ]);
 ```
 
-These tasks involve using various aggregation operators such as $group, $avg, $max, $sum, and $project to perform complex calculations and data transformations. You can write MongoDB aggregation queries to accomplish each task based on user data. Adjust the queries according to your specific implementation and requirements.
+**Note:** These tasks involve using various aggregation operators such as $group, $avg, $max, $sum, and $project to perform complex calculations and data transformations. You can write MongoDB aggregation queries to accomplish each task based on user data. Adjust the queries according to your specific implementation and requirements.
 
-Task 10: Perform a lookup aggregation to retrieve the orders data along with the customer details for each order.
+Dummy Data:
 
 ```js
+// orders
+[
+  {
+    _id: 1,
+    order_number: "ORD-001",
+    customer_id: 1,
+    total_amount: 100.0,
+  },
+  {
+    _id: 2,
+    order_number: "ORD-002",
+    customer_id: 2,
+    total_amount: 150.0,
+  },
+  {
+    _id: 3,
+    order_number: "ORD-003",
+    customer_id: 1,
+    total_amount: 200.0,
+  },
+]
 
+// customers
+[
+  ({
+    _id: 1,
+    name: "Alice Williams",
+    email: "alice@example.com",
+  },
+  {
+    _id: 2,
+    name: "Bob Anderson",
+    email: "bob@example.com",
+  },
+  {
+    _id: 3,
+    name: "Emily Davis",
+    email: "emily@example.com",
+  })
+];
+```
+
+Bonus: Perform a lookup aggregation to retrieve the orders data along with the customer details for each order.
+
+```js
+db.orders.aggregate([
+  {
+    $lookup: {
+      from: "customers",
+      localField: "customer_id",
+      foreignField: "_id",
+      as: "customerDetails",
+    },
+  },
+]);
 ```
